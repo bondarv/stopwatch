@@ -16,7 +16,8 @@
 
 - функциональный подход
 
-<br/>
+- 300 млс – это не DoubleClick
+  <br/>
 
 # Getting Started with Create React App
 

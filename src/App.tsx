@@ -20,12 +20,12 @@ function App() {
     const period = 1000;
     const subscription = interval(period)
       .pipe(takeWhile(() => status === Status.START))
-      .subscribe(() => {
+      .subscribe(() =>
         setState((prevState) => ({
           ...prevState,
           seconds: prevState.seconds + period,
-        }));
-      });
+        }))
+      );
     return () => subscription.unsubscribe();
   }, [status]);
 

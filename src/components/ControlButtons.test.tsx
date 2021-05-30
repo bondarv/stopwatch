@@ -21,7 +21,8 @@ describe('ControlButtons', () => {
 
     // Should render Start when press Wait
     const waitButton = getByText('Wait');
-    fireEvent.dblClick(waitButton);
+    fireEvent.click(waitButton);
+    fireEvent.click(waitButton);
     expect(getByText('Start')).toBeInTheDocument();
 
     // Click Start after Wait. Should render Stop
@@ -45,7 +46,8 @@ describe('ControlButtons', () => {
     const waitButton = getByText('Wait');
     fireEvent.click(waitButton);
     expect(getByText('Stop')).toBeInTheDocument();
-    fireEvent.dblClick(waitButton);
+    fireEvent.click(waitButton);
+    fireEvent.click(waitButton);
     expect(getByText('Start')).toBeInTheDocument();
 
     expect((waitButton as HTMLInputElement).disabled).toBe(true);

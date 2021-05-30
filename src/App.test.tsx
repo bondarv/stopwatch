@@ -29,7 +29,8 @@ describe('App', () => {
 
     // Wait
     const waitButton = getByText('Wait');
-    fireEvent.dblClick(waitButton);
+    fireEvent.click(waitButton);
+    fireEvent.click(waitButton);
     jest.advanceTimersByTime(1001);
     expect(getByText('00:00:01')).toBeInTheDocument();
 
