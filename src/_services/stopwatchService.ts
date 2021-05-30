@@ -1,12 +1,12 @@
 import { Subject } from 'rxjs';
-import { State, SetStateObserver } from '../types/stateType';
+import { Status } from '../types/statusType';
 
 const subject = new Subject();
 
 const stopwatchService = {
-  controlStopwatch: (state: State) => subject.next(state),
-  subscribe: (setState: SetStateObserver) =>
-    subject.subscribe(setState as Partial<Subject<unknown>>),
+  setStatus: (state: Status) => subject.next(state),
+  subscribe: (setStatus: (value: Status) => void) =>
+    subject.subscribe(setStatus as Partial<Subject<unknown>>),
 };
 
 export default stopwatchService;

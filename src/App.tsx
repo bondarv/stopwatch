@@ -1,41 +1,25 @@
 import { useState, useEffect } from 'react';
-import { interval } from 'rxjs';
-import { takeWhile } from 'rxjs/operators';
-import { Status } from './types/stateType';
+import { Status } from './types/statusType';
 import stopwatchService from './_services/stopwatchService';
-import ControlButtons from './components/ControlButtons';
+import Timer from './components/Timer';
+import ControlButtons from './components/controls/ControlButtons';
+import './App.css';
 
 function App() {
-  const [state, setState] = useState({ status: Status.STOP, seconds: 0 });
-  const { status, seconds } = state;
+  const [status, setStatus] = useState(Status.STOP);
 
   useEffect(() => {
-    const subscription = stopwatchService.subscribe((newState) =>
-      setState((prevState) => ({ ...prevState, ...newState }))
+    const subscription = stopwatchService.subscribe((newStatus) =>
+      setStatus(newStatus)
     );
     return () => subscription.unsubscribe();
   }, []);
-
-  useEffect(() => {
-    const period = 1000;
-    const subscription = interval(period)
-      .pipe(takeWhile(() => status === Status.START))
-      .subscribe(() =>
-        setState((prevState) => ({
-          ...prevState,
-          seconds: prevState.seconds + period,
-        }))
-      );
-    return () => subscription.unsubscribe();
-  }, [status]);
-
-  const stopwatch = new Date(seconds).toISOString().slice(11, 19);
 
   return (
     <div className="app">
       <h3>Stopwatch</h3>
       <div className="card">
-        <p>{stopwatch}</p>
+        <Timer status={status} />
         <ControlButtons status={status} />
       </div>
     </div>

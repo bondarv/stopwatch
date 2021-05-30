@@ -1,14 +1,17 @@
-import React from 'react';
-import { Status } from '../types/stateType';
+import { Status } from '../../types/statusType';
 import { StartButton, StopButton, WaitButton, ResetButton } from './buttons';
 
 interface ControlButtonsProps {
   status: Status;
 }
 
-const ControlButtons: React.FC<ControlButtonsProps> = ({ status }) => (
+const ControlButtons = ({ status }: ControlButtonsProps) => (
   <div className="buttons">
-    {status !== Status.START ? <StartButton /> : <StopButton />}
+    {status === Status.STOP || status === Status.WAIT ? (
+      <StartButton />
+    ) : (
+      <StopButton />
+    )}
     <WaitButton
       isDisabled={status === Status.STOP}
       isActive={status === Status.WAIT}
@@ -17,4 +20,4 @@ const ControlButtons: React.FC<ControlButtonsProps> = ({ status }) => (
   </div>
 );
 
-export default React.memo(ControlButtons);
+export default ControlButtons;
