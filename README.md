@@ -1,3 +1,10 @@
+2 версии проекта:
+
+- main branch: React + RxJS
+- redux branch: React + Redux
+
+## Секундомер
+
 Реализовать секундомер, который подсчитывает время в формате «HH: MM: SS»
 
 Секундомер должен иметь следующие кнопки:
@@ -17,7 +24,6 @@
 - функциональный подход
 
 - 300 млс – это не DoubleClick
-  <br/>
 
 # Getting Started with Create React App
 
