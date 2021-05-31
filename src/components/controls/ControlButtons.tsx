@@ -5,19 +5,17 @@ interface ControlButtonsProps {
   status: Status;
 }
 
-const ControlButtons = ({ status }: ControlButtonsProps) => (
-  <div className="buttons">
-    {status === Status.STOP || status === Status.WAIT ? (
-      <StartButton />
-    ) : (
-      <StopButton />
-    )}
-    <WaitButton
-      isDisabled={status === Status.STOP}
-      isActive={status === Status.WAIT}
-    />
-    <ResetButton isDisabled={status === Status.STOP} />
-  </div>
-);
+function ControlButtons({ status }: ControlButtonsProps) {
+  const isStop = status === Status.STOP;
+  const isWait = status === Status.WAIT;
+
+  return (
+    <div className="buttons">
+      {isStop || isWait ? <StartButton /> : <StopButton />}
+      <WaitButton isDisabled={isStop || isWait} isActive={isWait} />
+      <ResetButton isDisabled={isStop} />
+    </div>
+  );
+}
 
 export default ControlButtons;

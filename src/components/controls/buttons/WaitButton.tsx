@@ -21,7 +21,7 @@ function WaitButton({ isActive, isDisabled }: WaitButtonProps) {
       onClick={() => waitService.onWait(null)}
       className={`wait-button ${isActive && 'wait-button-active'}`}
       title="Double-click to wait"
-      disabled={isDisabled || isActive}
+      disabled={isDisabled}
     >
       Wait
     </button>
