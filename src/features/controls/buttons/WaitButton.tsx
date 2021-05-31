@@ -1,29 +1,21 @@
-import { useAppDispatch } from '../../../app/hooks';
+import { AppDispatch } from '../../../app/store';
 import { wait } from '../controlsSlice';
 
 interface WaitButtonProps {
   isActive: boolean;
   isDisabled: boolean;
+  dispatch: AppDispatch;
 }
 
-function WaitButton({ isActive, isDisabled }: WaitButtonProps) {
-  const dispatch = useAppDispatch();
-
-  function handleWaitButton(event: React.MouseEvent<HTMLButtonElement>) {
-    event.preventDefault();
-    dispatch(wait());
-  }
-
-  return (
-    <button
-      onDoubleClick={handleWaitButton}
-      className={`wait-button ${isActive && 'wait-button-active'}`}
-      title="Double-click to wait"
-      disabled={isDisabled || isActive}
-    >
-      Wait
-    </button>
-  );
-}
+const WaitButton = ({ isActive, isDisabled, dispatch }: WaitButtonProps) => (
+  <button
+    onDoubleClick={() => dispatch(wait())}
+    className={`wait-button ${isActive && 'wait-button-active'}`}
+    title="Double-click to wait"
+    disabled={isDisabled || isActive}
+  >
+    Wait
+  </button>
+);
 
 export { WaitButton };

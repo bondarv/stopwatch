@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react';
-import { useAppDispatch } from '../app/hooks';
+import { AppDispatch } from '../app/store';
 import { Status, start } from './controls/controlsSlice';
 
 interface TimerProps {
   status: Status;
+  dispatch: AppDispatch;
 }
 
-function Timer({ status }: TimerProps) {
+function Timer({ status, dispatch }: TimerProps) {
   const [seconds, setSeconds] = useState(0);
-  const dispatch = useAppDispatch();
 
   useEffect(() => {
     if (status === Status.STOP) {

@@ -1,19 +1,14 @@
-import { useAppDispatch } from '../../../app/hooks';
+import { AppDispatch } from '../../../app/store';
 import { start } from '../controlsSlice';
 
-function StartButton() {
-  const dispatch = useAppDispatch();
-
-  function handleStartButton(event: React.MouseEvent<HTMLButtonElement>) {
-    event.preventDefault();
-    dispatch(start());
-  }
-
-  return (
-    <button onClick={handleStartButton} className="start-button">
-      Start
-    </button>
-  );
+interface StartButtonProps {
+  dispatch: AppDispatch;
 }
+
+const StartButton = ({ dispatch }: StartButtonProps) => (
+  <button onClick={() => dispatch(start())} className="start-button">
+    Start
+  </button>
+);
 
 export { StartButton };
