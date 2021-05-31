@@ -12,7 +12,7 @@ const WaitButton = ({ isActive, isDisabled, dispatch }: WaitButtonProps) => (
     onDoubleClick={() => dispatch(wait())}
     className={`wait-button ${isActive && 'wait-button-active'}`}
     title="Double-click to wait"
-    disabled={isDisabled || isActive}
+    disabled={isDisabled}
   >
     Wait
   </button>

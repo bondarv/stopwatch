@@ -7,20 +7,25 @@ interface ControlButtonsProps {
   dispatch: AppDispatch;
 }
 
-const ControlButtons = ({ status, dispatch }: ControlButtonsProps) => (
-  <div className="buttons">
-    {status === Status.STOP || status === Status.WAIT ? (
-      <StartButton dispatch={dispatch} />
-    ) : (
-      <StopButton dispatch={dispatch} />
-    )}
-    <WaitButton
-      isDisabled={status === Status.STOP}
-      isActive={status === Status.WAIT}
-      dispatch={dispatch}
-    />
-    <ResetButton isDisabled={status === Status.STOP} dispatch={dispatch} />
-  </div>
-);
+function ControlButtons({ status, dispatch }: ControlButtonsProps) {
+  const isStop = status === Status.STOP;
+  const isWait = status === Status.WAIT;
+
+  return (
+    <div className="buttons">
+      {isStop || isWait ? (
+        <StartButton dispatch={dispatch} />
+      ) : (
+        <StopButton dispatch={dispatch} />
+      )}
+      <WaitButton
+        isDisabled={isStop || isWait}
+        isActive={isWait}
+        dispatch={dispatch}
+      />
+      <ResetButton isDisabled={isStop} dispatch={dispatch} />
+    </div>
+  );
+}
 
 export default ControlButtons;
